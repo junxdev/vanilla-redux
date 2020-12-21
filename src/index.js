@@ -1,4 +1,16 @@
+import React from "react";
+import ReactDOM from "react-dom"
+import App from "./components/App";
 import { createStore } from "redux";
+import { Provider } from "react-redux";
+import store from "./store";
+
+ReactDOM.render(
+  <Provider store={store}>
+    <App/>
+  </Provider>,
+  document.getElementById("root")
+);
 
 // const add = document.getElementById("add");
 // const minus = document.getElementById("minus");
@@ -43,79 +55,79 @@ import { createStore } from "redux";
 // add.addEventListener("click", handleAdd);
 // minus.addEventListener("click", handleMinus);
 
-const form = document.querySelector("form");
-const input = document.querySelector("input");
-const ul = document.querySelector("ul");
+// const form = document.querySelector("form");
+// const input = document.querySelector("input");
+// const ul = document.querySelector("ul");
 
-const ADD_TODO = "ADD_TODO";
-const DELETE_TODO = "DELETE_TODO";
+// const ADD_TODO = "ADD_TODO";
+// const DELETE_TODO = "DELETE_TODO";
 
-const addTodo = text => {
-  return { 
-    type: ADD_TODO, 
-    text 
-  };
-}
+// const addTodo = text => {
+//   return { 
+//     type: ADD_TODO, 
+//     text 
+//   };
+// }
 
-const deleteToDo = id => {
-  return { 
-    type: DELETE_TODO, 
-    id 
-  };
-}
+// const deleteToDo = id => {
+//   return { 
+//     type: DELETE_TODO, 
+//     id 
+//   };
+// }
 
-const reducer = (state = [], action) => {
-  switch(action.type) {
-    case ADD_TODO:
-      return [{ text: action.text, id: Date.now() }, ...state];
-    case DELETE_TODO:
-      return state.filter(toDo => toDo.id !== action.id);
-    default:
-      return state;
-  }
-}
+// const reducer = (state = [], action) => {
+//   switch(action.type) {
+//     case ADD_TODO:
+//       return [{ text: action.text, id: Date.now() }, ...state];
+//     case DELETE_TODO:
+//       return state.filter(toDo => toDo.id !== action.id);
+//     default:
+//       return state;
+//   }
+// }
 
-const store = createStore(reducer);
+// const store = createStore(reducer);
 
-store.subscribe(() => {console.log(store.getState())});
+// store.subscribe(() => {console.log(store.getState())});
 
-const dispatchAddTodo = text => {
-  store.dispatch(addTodo(text));
-}
+// const dispatchAddTodo = text => {
+//   store.dispatch(addTodo(text));
+// }
 
-const dispatchDeleteToDo = e => {
-  const id = parseInt(e.target.parentNode.id);
-  store.dispatch(deleteToDo(id));
-}
+// const dispatchDeleteToDo = e => {
+//   const id = parseInt(e.target.parentNode.id);
+//   store.dispatch(deleteToDo(id));
+// }
 
-const paintToDos = () => {
-  const toDos = store.getState();
-  ul.innerHTML = "";
-  toDos.forEach(toDo => {
-    const li = document.createElement("li");
-    const btn = document.createElement("button");
-    btn.innerText = "DEL";
-    btn.addEventListener("click", dispatchDeleteToDo);
-    li.id = toDo.id;
-    li.innerText = toDo.text;
-    li.appendChild(btn);
-    ul.appendChild(li);
-  })
-}
+// const paintToDos = () => {
+//   const toDos = store.getState();
+//   ul.innerHTML = "";
+//   toDos.forEach(toDo => {
+//     const li = document.createElement("li");
+//     const btn = document.createElement("button");
+//     btn.innerText = "DEL";
+//     btn.addEventListener("click", dispatchDeleteToDo);
+//     li.id = toDo.id;
+//     li.innerText = toDo.text;
+//     li.appendChild(btn);
+//     ul.appendChild(li);
+//   })
+// }
 
-store.subscribe(paintToDos);
+// store.subscribe(paintToDos);
 
-// const createToDo = toDo => {
-//   const li = document.createElement("li");
-//   li.innerText = toDo;
-//   ul.appendChild(li);
+// // const createToDo = toDo => {
+// //   const li = document.createElement("li");
+// //   li.innerText = toDo;
+// //   ul.appendChild(li);
+// // };
+
+// const onSubmit = e => {
+//   e.preventDefault();
+//   const toDo = input.value;
+//   input.value = '';
+//   dispatchAddTodo(toDo);
 // };
 
-const onSubmit = e => {
-  e.preventDefault();
-  const toDo = input.value;
-  input.value = '';
-  dispatchAddTodo(toDo);
-};
-
-form.addEventListener("submit", onSubmit);
+// form.addEventListener("submit", onSubmit);
