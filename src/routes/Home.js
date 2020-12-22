@@ -35,6 +35,7 @@ function Home({ toDos, addToDo }) {
 }
 
 function mapStateToProps(state) {
+    // console.log(state);
     return { toDos: state };
 }
 
