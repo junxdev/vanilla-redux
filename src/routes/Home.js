@@ -38,11 +38,11 @@ function mapStateToProps(state) {
     return { toDos: state };
 }
 
-function mapDispathToProps(dispatch) {
-    console.log(dispatch);
+function mapDispatchToProps(dispatch) {
+    // console.log(dispatch);
     return {
         addToDo: text => dispatch(actionCreators.addToDo(text))
     };
 }
 
-export default connect(mapStateToProps, mapDispathToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
